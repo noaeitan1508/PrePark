@@ -14,7 +14,7 @@ PrePark היא אפליקציית אנדרואיד מתקדמת המאפשרת �
 אזור אישי והיסטוריית חניות: ניהול נתוני משתמש, אמצעי תשלום, ושמירת היסטוריית הזמנות באמצעות מערכת האחסון המקומית SharedPreferences.
 
 טכנולוגיות וספריות
-שפת פיתוח<img width="158" height="305" alt="צילום מסך 2026-08-24 220147" src="https://github.com/user-attachments/assets/a8895275-ca18-414c-a75e-81840a8589a5" /><img width="151" height="308" alt="צילום מסך 2026-08-24 220204" src="https://github.com/user-attachments/assets/1f641165-06a4-4e68-a929-e34f679d9740" />
+שפת פיתוח<>
 Kotlin
 
 עיצוב ממשק: XML (דגש על ConstraintLayout להתאמה למסכים שונים)
@@ -28,4 +28,6 @@ com.google.android.gms:play-services-maps
 com.google.android.libraries.places:places
 
 ניהול זיכרון ומחזורי חיים: טיפול מקיף ב-LifeCycle של קומפוננטת המפה (MapView) למניעת קריסות וזליגות זיכרון במעבר בין מסכים או בהורדת האפליקציה לרקע.
+<img width="151" height="308" alt="צילום מסך 2026-08-24 220204" src="https://github.com/user-attachments/assets/644c14fe-186a-450e-a225-04a631aaf2ed" />
+<img width="158" height="305" alt="צילום מסך 2026-08-24 220147" src="https://github.com/user-attachments/assets/37267075-5dc6-4a9e-bed5-d4b72924d9ad" />
 

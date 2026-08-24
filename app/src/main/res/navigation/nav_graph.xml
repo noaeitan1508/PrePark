@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchParkingFragment">
+
+    <!-- מסך 1: חיפוש חניה -->
+    <fragment
+        android:id="@+id/searchParkingFragment"
+        android:name="com.example.prepark.ui.SearchParkingFragment"
+        android:label="SearchParkingFragment"
+        tools:layout="@layout/fragment_search_parking">
+
+        <!-- החץ למסך הסיכום -->
+        <action
+            android:id="@+id/action_search_to_summary"
+            app:destination="@id/summaryFragment" />
+
+        <!-- החץ למסך ההיסטוריה -->
+        <action
+            android:id="@+id/action_search_to_history"
+            app:destination="@id/historyFragment" />
+    </fragment>
+
+    <!-- מסך 2: סיכום ותשלום -->
+    <fragment
+        android:id="@+id/summaryFragment"
+        android:name="com.example.prepark.ui.SummaryFragment"
+        android:label="SummaryFragment"
+        tools:layout="@layout/fragment_summary">
+
+        <!-- החץ למסך החניה הפעילה -->
+        <action
+            android:id="@+id/action_summary_to_active"
+            app:destination="@id/activeParkingFragment" />
+    </fragment>
+
+    <!-- מסך 3: חניה פעילה (טיימר) -->
+    <fragment
+        android:id="@+id/activeParkingFragment"
+        android:name="com.example.prepark.ui.ActiveParkingFragment"
+        android:label="ActiveParkingFragment"
+        tools:layout="@layout/fragment_active_parking" />
+
+    <!-- מסך 4: היסטוריית חניות -->
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.prepark.ui.HistoryFragment"
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history" />
+
+</navigation>

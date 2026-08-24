@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layoutDirection="rtl"
+    android:background="@android:color/white">
+
+    <!-- כותרת מיושרת לאמצע עם כפתור X בצד שמאל -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/btnCloseBottomSheet"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="#000000"/>
+
+        <TextView
+            android:id="@+id/tvPickerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="בחר מועד הגעה ומשך חניה:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutArrivalTiming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <NumberPicker android:id="@+id/pickerDay" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="8dp"/>
+        <NumberPicker android:id="@+id/pickerHour" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" android:textSize="24sp" android:textStyle="bold" android:layout_marginEnd="8dp"/>
+        <NumberPicker android:id="@+id/pickerMinute" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="משך זמן חניה משוער:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="24dp">
+
+        <NumberPicker android:id="@+id/pickerDurationHours" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="שעות ו-" android:textSize="16sp" android:layout_marginEnd="16dp"/>
+        <NumberPicker android:id="@+id/pickerDurationMinutes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="8dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="דקות" android:textSize="16sp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirmTime"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="אישור"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="#0D47A1"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

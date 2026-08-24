@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layoutDirection="rtl"
+    android:background="#F5F7FA"
+    android:padding="24dp">
+
+    <!-- כפתור סגירה למעלה  -->
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_gravity="end"
+        android:layout_marginBottom="48dp"
+        app:tint="#888888" />
+
+    <!-- כותרת דינמית שתשתנה לפי סטטוס השעון -->
+    <TextView
+        android:id="@+id/tvTimerStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="החניה שלך משוריינת ומחכה לך!"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvLocationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שדרות רוטשילד 58, תל אביב"
+        android:textSize="18sp"
+        android:textColor="#555555"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- השעון לאחור  -->
+    <TextView
+        android:id="@+id/tvMainTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00:00"
+        android:textSize="64sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="48dp"/>
+
+    <!-- כפתור פעולה (לביטול או סיום מוקדם) -->
+    <Button
+        android:id="@+id/btnAction"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="סיום חניה / ביטול"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:backgroundTint="#F44336"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.PrePark" parent="Theme.Material3.DayNight.NoActionBar">
+
+
+    </style>
+
+    <style name="Theme.PrePark" parent="Base.Theme.PrePark" />
+</resources>

@@ -1,4 +1,4 @@
-package com.example.prepark // ודאי שזה תואם לשם ה-package שלך
+package com.example.prepark 
 
 import android.content.Context
 import android.os.Bundle
@@ -41,7 +41,7 @@ class ReportsActivity : AppCompatActivity() {
         val tvReportTitle = findViewById<TextView>(R.id.tvReportTitle)
         tvReportTitle.text = "דיווחי נהגים:\n$parkingName"
 
-        // כפתור חזור החדש שלך (החץ)
+        // כפתור חזור החדש  (החץ)
         backButton.setOnClickListener {
             finish()
         }

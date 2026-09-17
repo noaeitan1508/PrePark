@@ -50,16 +50,71 @@ class MainActivity : AppCompatActivity() {
         miniPlayerLayout = findViewById(R.id.miniPlayerLayout)
         tvMiniTimer = findViewById(R.id.tvMiniTimer)
         val btnCancelParking = findViewById<TextView>(R.id.btnCancelParking)
+        val btnExtendParking = findViewById<TextView>(R.id.btnExtendParking)
 
-        miniPlayerLayout.setBackgroundColor(Color.parseColor("#0D47A1"))
+        // שינוי לצבע הכחול הכהה (כמו פנגו)
+        miniPlayerLayout.setBackgroundColor(Color.parseColor("#154C9A"))
 
-        btnCancelParking.setOnClickListener {
-            cancelAlarm()
+        // --- 1. לוגיקה לכפתור הארכה ---
+        btnExtendParking.setOnClickListener {
             val activePref = getSharedPreferences("ActiveBooking", Context.MODE_PRIVATE)
-            activePref.edit().clear().apply()
-            updateNotification(0L, true)
-            updateMiniPlayerTimer()
-            Toast.makeText(this, "החניה הסתיימה/בוטלה.", Toast.LENGTH_SHORT).show()
+            val endTime = activePref.getLong("endTime", 0L)
+
+            if (endTime != 0L) {
+                val remainingMinutes = ((endTime - System.currentTimeMillis()) / (1000 * 60)).toInt()
+
+                // אפשר להאריך רק אם נשארה חצי שעה או פחות
+                if (remainingMinutes <= 30) {
+                    val newEndTime = endTime + (30 * 60 * 1000) // הוספת 30 דקות (במילישניות)
+                    activePref.edit().putLong("endTime", newEndTime).apply()
+                    Toast.makeText(this, "החניה הוארכה ב-30 דקות ⏳", Toast.LENGTH_SHORT).show()
+
+                    // עדכון התראות קיימות עם הזמן החדש
+                    activePref.edit().putBoolean("alarmScheduled", false).apply()
+                    updateMiniPlayerTimer()
+                } else {
+                    Toast.makeText(this, "ניתן להאריך חניה רק ב-30 הדקות האחרונות", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        // --- 2. לוגיקה לכפתור ביטול (סימולציית תמחור דינמי ופנגו) ---
+        btnCancelParking.setOnClickListener {
+            val activePref = getSharedPreferences("ActiveBooking", Context.MODE_PRIVATE)
+            val endTime = activePref.getLong("endTime", 0L)
+            val remainingMinutes = ((endTime - System.currentTimeMillis()) / (1000 * 60)).toInt()
+
+            if (remainingMinutes >= 30) {
+                // הלקוח יצא מוקדם - יש זיכוי!
+                val refundAmount = (remainingMinutes / 60.0) * 40.0 // תעריף דמה
+
+                android.app.AlertDialog.Builder(this)
+                    .setTitle("סיום חניה מוקדם")
+                    .setMessage("יצאת $remainingMinutes דקות מוקדם יותר!\n\nעל פי התמחור הדינמי זוכית ב-₪${String.format("%.2f", refundAmount)}.\n\nהפרטים הועברו לשרתי פנגו (Pango API) לסליקה סופית.")
+                    .setPositiveButton("אישור") { _, _ ->
+                        cancelAlarm()
+                        activePref.edit().clear().apply()
+                        updateNotification(0L, true)
+                        updateMiniPlayerTimer()
+                        Toast.makeText(this, "חניה הסתיימה", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("חזור", null)
+                    .show()
+            } else {
+                // הלקוח יצא רגיל - חיוב רגיל
+                android.app.AlertDialog.Builder(this)
+                    .setTitle("סיום חניה")
+                    .setMessage("החניה תסתיים כעת והחיוב יועבר לשרתי פנגו.")
+                    .setPositiveButton("אישור") { _, _ ->
+                        cancelAlarm()
+                        activePref.edit().clear().apply()
+                        updateNotification(0L, true)
+                        updateMiniPlayerTimer()
+                        Toast.makeText(this, "חניה הסתיימה", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("חזור", null)
+                    .show()
+            }
         }
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -100,7 +155,6 @@ class MainActivity : AppCompatActivity() {
                 updateNotification(0L, true)
                 cancelAlarm()
 
-                // הוספתי פה שהאפליקציה תשמיע צליל כשהזמן נגמר
                 try {
                     val alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
                     val ringtone = RingtoneManager.getRingtone(applicationContext, alarmUri)
@@ -263,8 +317,22 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
+        // הפעלת כפתור דיווחי נהגים בזמן אמת
+        val btnOpenReports = dialog.findViewById<Button>(R.id.openReportsButton)
+        btnOpenReports?.setOnClickListener {
+            val activePref = getSharedPreferences("ActiveBooking", Context.MODE_PRIVATE)
+            val currentParking = activePref.getString("parkingName", "")
+
+            if (currentParking.isNullOrEmpty()) {
+                Toast.makeText(this@MainActivity, "יש להזמין חניה קודם כדי לראות ולשתף דיווחים \uD83D\uDE97", Toast.LENGTH_LONG).show()
+            } else {
+                val intent = Intent(this@MainActivity, ReportsActivity::class.java)
+                startActivity(intent)
+            }
+        }
         dialog.show()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

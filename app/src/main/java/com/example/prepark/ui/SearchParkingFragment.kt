@@ -249,7 +249,7 @@ class SearchParkingFragment : Fragment(), OnMapReadyCallback {
             pickerMinute.maxValue = 59
             pickerMinute.value = Calendar.getInstance().get(Calendar.MINUTE)
         } else {
-            tvPickerTitle.text = "לכמה זמן תרצי לחנות עכשיו?"
+            tvPickerTitle.text = "לכמה זמן תרצה לחנות עכשיו?"
             layoutArrivalTiming.visibility = View.GONE
         }
 

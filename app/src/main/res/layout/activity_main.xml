@@ -17,26 +17,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- אזור השעון שעודכן כדי לאפשר כפתור סיום לצידו -->
+    <!-- אזור השעון -->
     <RelativeLayout
         android:id="@+id/miniPlayerLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#2196F3"
+        android:background="#154C9A"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/tvMiniTimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00:00:00"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true" />
-
-        <!-- הכפתור החדש שיושב בצד שמאל בתוך הפס הכחול -->
+        <!-- כפתור ביטול/סיום מקורי (צד שמאל) -->
         <TextView
             android:id="@+id/btnCancelParking"
             android:layout_width="wrap_content"
@@ -49,6 +39,34 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:layout_alignParentStart="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <!-- שעון החניה במרכז המסך -->
+        <TextView
+            android:id="@+id/tvMiniTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00:00"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true" />
+
+        <!-- כפתור הארכה  -->
+        <TextView
+            android:id="@+id/btnExtendParking"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="הארכה"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_alignParentEnd="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"/>

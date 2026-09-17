@@ -31,7 +31,7 @@ class ReportsActivity : AppCompatActivity() {
         // מנקים תווים שאסור לכתוב בפיירבייס
         val safeParkingName = parkingName.replace("[.#$\\[\\]]".toRegex(), "")
 
-        // מתחברים ספציפית לתיקייה של החניון הזה בפיירבייס!
+        // מתחברים ספציפית לתיקייה של החניון הזה בפיירבייס
         database = FirebaseDatabase.getInstance().getReference("Reports").child(safeParkingName)
 
         val reportsListView = findViewById<ListView>(R.id.reportsListView)
@@ -41,7 +41,7 @@ class ReportsActivity : AppCompatActivity() {
         val tvReportTitle = findViewById<TextView>(R.id.tvReportTitle)
         tvReportTitle.text = "דיווחי נהגים:\n$parkingName"
 
-        // כפתור חזור החדש  (החץ)
+        // כפתור חזור (החץ)
         backButton.setOnClickListener {
             finish()
         }

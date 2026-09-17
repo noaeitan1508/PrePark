@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // אתחול החיבור לשרת פיירבייס שלנו
+        //אתחול החיבור לשרת פיירבייסו
         auth = FirebaseAuth.getInstance()
 
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
